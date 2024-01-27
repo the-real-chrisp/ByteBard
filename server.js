@@ -36,14 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-function list(path) {
-  const Model = require(path)
-  Model.findAll({}).then(items => {
-    console.log(`\n${path}\n`)
-    console.log(items.map(item => item.dataValues))
-  })
-}
-
 sequelize.sync({ alter: true }).then(() => {
   app.listen(PORT, () => function(err){
     if (err) {
